@@ -13,4 +13,16 @@ const roundedIdealWeight = Math.round(idealWeight);
 const BMR = (10 * weightInKg) + (6.25 * heightInM * 100)- (5 * age);
 const calorieConsumptionPerDay = BMR * 1.4;
 const roundedCalorieConsumption = Math.round(calorieConsumptionPerDay);
+console.log(`
+weight: ${weightInKg}
+height: ${heightInM}
+
+Your BMI is ${roundedBMI}.
+
+A BMI under 18.5 is considered underweight.
+A BMI above 25 is considered overweight.
+
+Your ideal weight is ${roundedIdealWeight} kg.
+
+With a normal lifestyle you burn ${roundedCalorieConsumption} per day.`);
 

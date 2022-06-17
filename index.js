@@ -3,6 +3,7 @@
 const weightInKg = parseInt(process.argv[2]);
 const heightInM = parseFloat(process.argv[3]);
 const age = parseInt(process.argv[4]);
+const dailyExercise = process.argv[5];
 //console.log("weight:", weightInKg);
 //console.log("height:", heightInM);
 //BMI is body mass index.
@@ -14,13 +15,19 @@ const idealWeight = idealBMI * heightInM * heightInM;
 
 
 //The BMI is Basal Metabolic Rate. 
-const BMR = (10 * weightInKg) + (6.25 * heightInM * 100)- (5 * age);
-const calorieNeededPerDay = BMR * 1.4;
+const heighInCm = heightInM * 100;
+const BMR = (10 * weightInKg) + (6.25 * heighInCm)- (5 * age);
+//Amount of calorie needed is differenet for person who exercises daily.
+const calorieNeededPerDay = dailyExercise === "yes" ? BMR * 1.6 : BMR * 1.4;
+console.log(calorieNeededPerDay);
+
+
 
 
 
 //The amount of weight to lose to reach your idealweight is: weight (kg) - ideal weight (kg)
 const extraWeightKg = weightInKg - idealWeight;
+console.log(extraWeightKg);
 
 //Eating 500 calories less than the body need, one can loose 0.5 kg per week.
 //The time (weeks) it will take to reach your ideal weight is: amount of weight to lose / 0.5

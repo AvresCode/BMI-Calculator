@@ -11,7 +11,7 @@ if(process.argv.length !== 7 ){
         whether you exercise or not (yes or no),
         and your gender (m or f)
 
-        Example:
+        Example of correct input:
 
     $ node index.js 54 1.6 32 yes f
 
@@ -35,6 +35,8 @@ if(isNaN(weightInKg) || isNaN(heightInM) || isNaN(age)) {
         weight (kg) example : 54 | your input : ${process.argv[2]}
         height (m) example : 1.6 | your input : ${process.argv[3]}
         age example: 32 | your input : ${process.argv[4]}
+
+        Example of correct input:
         $ node index.js 54 1.6 32 yes f
         `);
 
@@ -66,7 +68,16 @@ if(weightInKg < 30 || weightInKg > 300 ){
     process.exit();
 }
 
+if(dailyExercise!== "yes" && dailyExercise!== "no"){
+    console.log(`
+    please provide 'yes' or 'no' answer to the question 'do you exercise daily?'. 
+    Your input is ${dailyExercise}. 
+    Example of correct input:
+    $ node index.js 54 1.6 32 yes f
 
+    `);
+    process.exit();
+}
 
 //BMI is body mass index.
 const BMI = weightInKg / (heightInM * heightInM);
@@ -82,12 +93,10 @@ const BMR = gender === "m" ? (10 * weightInKg) + (6.25 * heighInCm)- (5 * age) +
 console.log('BMR:',BMR);
 //Amount of calorie needed is differenet for person who exercises daily.
 const calorieNeededPerDay = dailyExercise === "yes" ? BMR * 1.6 : BMR * 1.4;
-console.log('Calorie need:',calorieNeededPerDay);
 
 
 //The amount of weight to lose to reach your idealweight is: weight (kg) - ideal weight (kg)
 const weightDifference = weightInKg - idealWeight;
-console.log('weightDifference:', weightDifference);
 
 //Calorie to take in order to loose 0.5 kg per week :  daily usage - 500
 //Calorie to take in order to gain 0.5 kg per week :  daily usage + 500
@@ -103,9 +112,6 @@ if(weightDifference > 0){
 
 
 const weeksToDiet = Math.abs(weightDifference / 0.5);
-
-
-
 
 console.log(`
 ****************
